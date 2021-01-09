@@ -46,3 +46,8 @@ data Barry t k p = Barry {
 
 instance Functor (Barry t k) where
     fmap f (Barry {yabba = x, dabba = ys}) = Barry {yabba = (f x), dabba = ys}
+
+instance Functor IO where
+    fmap f action = do 
+        result <- action
+        return (f result)
